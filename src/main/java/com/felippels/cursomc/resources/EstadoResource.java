@@ -15,8 +15,8 @@ public class EstadoResource {
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Estado>  listar() {
 		
-		Estado est1 = new Estado(1,"Ceará");
-		Estado est2 = new Estado(2,"São Paulo");
+		Estado est1 = new Estado(null,"Ceará");
+		Estado est2 = new Estado(null,"São Paulo");
 		List<Estado> lista = new ArrayList<Estado >(); 
 		lista.add(est1);
 		lista.add(est2);
