@@ -17,6 +17,7 @@ import com.felippels.cursomc.services.CategoriaService;
 @RestController
 @RequestMapping(value="/categorias")
 public class CategoriaResource {
+	
 	@Autowired
 	CategoriaService categoriaService;
 	
@@ -27,16 +28,4 @@ public class CategoriaResource {
 		return ResponseEntity.ok().body(categoria);
 	}
 	
-	
-	@RequestMapping(method=RequestMethod.GET)
-	public List<Categoria>  listar() {
-		
-		Categoria cat1 = new Categoria(null,"Informática");
-		Categoria cat2 = new Categoria(null,"Escritório");
-		List<Categoria> lista = new ArrayList<Categoria >(); 
-		lista.add(cat1);
-		lista.add(cat2);
-		return lista;
-	}
-
 }
