@@ -1,5 +1,6 @@
 package com.felippels.cursomc.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -11,13 +12,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.felippels.cursomc.domain.enums.TipoPessoa;
 
 @Entity
-public class Cliente {
+public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -27,6 +28,7 @@ public class Cliente {
 	private String cpfOuCnpj;
 	private Integer tipoPessoa;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy= "cliente")
 	private List< Endereco> enderecoLista = new ArrayList();
 	
@@ -34,6 +36,10 @@ public class Cliente {
 	@CollectionTable(name="TELEFONE")
 	private Set<String> telefones = new HashSet<>();
 
+	
+	@OneToMany(mappedBy= "cliente")
+	List<Pedido> pedidoLista = new ArrayList<>();
+	
 	public Cliente() {}
 	
 	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoPessoa tipoPessoa) {
@@ -105,6 +111,16 @@ public class Cliente {
 	public void setTipoPessoa(Integer tipoPessoa) {
 		this.tipoPessoa = tipoPessoa;
 	}
+	
+	
+
+	public List<Pedido> getPedidoLista() {
+		return pedidoLista;
+	}
+
+	public void setPedidoLista(List<Pedido> pedidoLista) {
+		this.pedidoLista = pedidoLista;
+	}
 
 	@Override
 	public int hashCode() {
@@ -113,6 +129,7 @@ public class Cliente {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+	
 
 	@Override
 	public boolean equals(Object obj) {
