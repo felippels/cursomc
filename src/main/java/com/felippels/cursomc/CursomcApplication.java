@@ -116,8 +116,8 @@ public class CursomcApplication implements CommandLineRunner {
 		
 	    
 	    
-		Pagamento pagamento = new PagamentoComCartao( null, EstadoPagamento.QUITADO.getCod(), pedido, 6   );
-		Pagamento pagamento2 = new PagamentoComBoleto( null, EstadoPagamento.PENDENTE.getCod(), pedido2, sdf.parse("20/01/2018 10:00"),null);
+		Pagamento pagamento = new PagamentoComCartao( null, EstadoPagamento.QUITADO, pedido, 6   );
+		Pagamento pagamento2 = new PagamentoComBoleto( null, EstadoPagamento.PENDENTE, pedido2, sdf.parse("20/01/2018 10:00"),null);
 		
 		pedido.setPagamento(pagamento);
 		pedido2.setPagamento(pagamento2);

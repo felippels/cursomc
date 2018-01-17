@@ -2,6 +2,8 @@ package com.felippels.cursomc.domain;
 
 import javax.persistence.Entity;
 
+import com.felippels.cursomc.domain.enums.EstadoPagamento;
+
 @Entity
 public class PagamentoComCartao extends Pagamento {
 	
@@ -11,7 +13,7 @@ public class PagamentoComCartao extends Pagamento {
 		super();
 	}
 
-	public PagamentoComCartao(Integer id, Integer estadoPagamento, Pedido pedido, Integer numParcelas) {
+	public PagamentoComCartao(Integer id, EstadoPagamento  estadoPagamento, Pedido pedido, Integer numParcelas) {
 		super(id, estadoPagamento, pedido);
 		this.numParcelas = numParcelas;
 

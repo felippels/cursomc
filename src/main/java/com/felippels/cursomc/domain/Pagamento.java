@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
+import com.felippels.cursomc.domain.enums.EstadoPagamento;
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Pagamento implements Serializable {
@@ -29,10 +31,10 @@ public abstract class Pagamento implements Serializable {
 		
 	}
 	
-	public Pagamento(Integer id, Integer estadoPagamento, Pedido pedido) {
+	public Pagamento(Integer id, EstadoPagamento estadoPagamento, Pedido pedido) {
 		super();
 		this.id = id;
-		this.estadoPagamento = estadoPagamento;
+		this.estadoPagamento = estadoPagamento.getCod();
 		this.pedido = pedido;
 	}
 
@@ -44,12 +46,12 @@ public abstract class Pagamento implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getEstadoPagamento() {
-		return estadoPagamento;
+	public EstadoPagamento getEstadoPagamento() {
+		return EstadoPagamento.toEnum(estadoPagamento);
 	}
 
-	public void setEstadoPagamento(Integer estadoPagamento) {
-		this.estadoPagamento = estadoPagamento;
+	public void setEstadoPagamento(EstadoPagamento estadoPagamento) {
+		this.estadoPagamento = estadoPagamento.getCod();
 	}
 
 	public Pedido getPedido() {

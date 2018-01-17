@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 
+import com.felippels.cursomc.domain.enums.EstadoPagamento;
+
 @Entity
 public class PagamentoComBoleto extends Pagamento {
 	
@@ -14,7 +16,7 @@ public class PagamentoComBoleto extends Pagamento {
 		super();
 
 	}
-	public PagamentoComBoleto(Integer id, Integer estadoPagamento, Pedido pedido, Date dataVencimento, Date dataPagamento) {
+	public PagamentoComBoleto(Integer id, EstadoPagamento estadoPagamento, Pedido pedido, Date dataVencimento, Date dataPagamento) {
 		super(id, estadoPagamento, pedido);
 		this.dataVencimento = dataVencimento;
 		this.dataPagamento = dataPagamento;
