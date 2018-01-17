@@ -14,6 +14,7 @@ import com.felippels.cursomc.domain.Cidade;
 import com.felippels.cursomc.domain.Cliente;
 import com.felippels.cursomc.domain.Endereco;
 import com.felippels.cursomc.domain.Estado;
+import com.felippels.cursomc.domain.ItemPedido;
 import com.felippels.cursomc.domain.Pagamento;
 import com.felippels.cursomc.domain.PagamentoComBoleto;
 import com.felippels.cursomc.domain.PagamentoComCartao;
@@ -26,6 +27,7 @@ import com.felippels.cursomc.repositories.CidadeRepository;
 import com.felippels.cursomc.repositories.ClienteRepository;
 import com.felippels.cursomc.repositories.EnderecoRepository;
 import com.felippels.cursomc.repositories.EstadoRepository;
+import com.felippels.cursomc.repositories.ItemPedidoRepository;
 import com.felippels.cursomc.repositories.PagamentoRepository;
 import com.felippels.cursomc.repositories.PedidoRepository;
 import com.felippels.cursomc.repositories.ProdutoRepository;
@@ -49,6 +51,8 @@ public class CursomcApplication implements CommandLineRunner {
 	private PedidoRepository pedidoRepositorio;
 	@Autowired
 	private PagamentoRepository pagamentoRepositorio;
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepositorio;
 	
 	
 	
@@ -124,6 +128,16 @@ public class CursomcApplication implements CommandLineRunner {
 		
 		pedidoRepositorio.save(Arrays.asList(pedido, pedido2));
 		pagamentoRepositorio.save(Arrays.asList(pagamento, pagamento2));
+		
+		ItemPedido itmPedido1 = new ItemPedido( pedido, prod1, 0.00, 2, 800.00   );  
+		ItemPedido itmPedido2 = new ItemPedido( pedido, prod3, 0.00, 8, 30.00   );
+		ItemPedido itmPedido3 = new ItemPedido( pedido2, prod2, 10.00, 10, 7.00   );
+		
+		pedido.getItemPedidoLista().addAll(Arrays.asList(itmPedido1, itmPedido2));
+		pedido2.getItemPedidoLista().addAll(Arrays.asList(itmPedido3));
+		
+		itemPedidoRepositorio.save(Arrays.asList(itmPedido1,itmPedido2,itmPedido3));
+		
 	}
 	
 	

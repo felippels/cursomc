@@ -2,7 +2,9 @@ package com.felippels.cursomc.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -29,7 +32,10 @@ public class Produto implements Serializable  {
 	@JoinTable(name = "PRODUTO_CATEGORIA",
 	joinColumns = @JoinColumn(name = "id_produto"),
 	inverseJoinColumns = @JoinColumn(name = "id_categoria")	)
-	private List<Categoria> categoriasLista = new ArrayList(); 
+	private List<Categoria> categoriasLista = new ArrayList();
+	
+	@OneToMany(mappedBy="id.produto")
+	private Set<ItemPedido> itemPedidoLista = new HashSet<>();
 	
 	public Produto() {}
 	public Produto(Integer id, String nome, Double preco) {
@@ -38,6 +44,17 @@ public class Produto implements Serializable  {
 		this.nome = nome;
 		this.preco = preco;
 	}
+	
+	public List<Pedido> getPedidos(){
+		List<Pedido> lista = new ArrayList();
+		for (ItemPedido item : itemPedidoLista ) {
+			lista.add(item.getPedido());
+			
+		}
+		return lista;
+	}
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -64,6 +81,14 @@ public class Produto implements Serializable  {
 	public void setCategoriasLista(List<Categoria> categoriasLista) {
 		this.categoriasLista = categoriasLista;
 	}
+	
+	public Set<ItemPedido> getItemPedidoLista() {
+		return itemPedidoLista;
+	}
+	public void setItemPedidoLista(Set<ItemPedido> itemPedidoLista) {
+		this.itemPedidoLista = itemPedidoLista;
+	}
+	
 	@Override
 	public String toString() {
 		return "Produto [id=" + id + ", nome=" + nome + ", preco=" + preco + "]";
@@ -91,8 +116,6 @@ public class Produto implements Serializable  {
 			return false;
 		return true;
 	}
-	
-	
-	
+		
 
 }
