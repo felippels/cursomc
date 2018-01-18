@@ -4,6 +4,8 @@ package com.felippels.cursomc.resources;
 
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.felippels.cursomc.domain.Categoria;
+import com.felippels.cursomc.dto.CategoriaDTO;
 import com.felippels.cursomc.services.CategoriaService;
 
 @RestController
@@ -30,6 +33,14 @@ public class CategoriaResource {
 		
 		return ResponseEntity.ok().body(categoria);
 	}
+	
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<List<CategoriaDTO>>  findAll() {
+		List<Categoria> categoriaLista = categoriaService.findAll();
+		List<CategoriaDTO> categoriaListaDto =categoriaLista.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());  
+		return ResponseEntity.ok().body(categoriaListaDto);
+	}
+	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody Categoria categoria) {
 		categoria = categoriaService.insert(categoria);
