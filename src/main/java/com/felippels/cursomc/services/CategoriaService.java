@@ -1,6 +1,7 @@
 package com.felippels.cursomc.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.felippels.cursomc.domain.Categoria;
@@ -29,6 +30,16 @@ public class CategoriaService {
 	public Categoria update(Categoria categoria) {
 		find(categoria.getId());
 		return repositoryCategoria.save (categoria);	 
+		
+	}
+	public void delete(Integer id) {
+		find(id);
+		try {
+			repositoryCategoria.delete (id);	
+		} catch (DataIntegrityViolationException e) {
+			throw new com.felippels.cursomc.services.exceptions.DataIntegrityViolationException("não é possível excluir uma categoria que possue produtos, ID: " + id.toString() +", Tipo:" + Categoria.class.getName());
+		}
+			 
 		
 	}
 }
