@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.felippels.cursomc.domain.Categoria;
+import com.felippels.cursomc.domain.Cliente;
 import com.felippels.cursomc.dto.CategoriaDTO;
 import com.felippels.cursomc.repositories.CategoriaRepository;
 import com.felippels.cursomc.services.exceptions.ObjectNotFoundException;
@@ -34,10 +35,12 @@ public class CategoriaService {
 		
 	}
 	public Categoria update(Categoria categoria) {
-		find(categoria.getId());
-		return repositoryCategoria.save (categoria);	 
+		Categoria categoriaNovo = find(categoria.getId());
+		updateData(categoriaNovo , categoria);
+		return repositoryCategoria.save (categoriaNovo);	 
 		
 	}
+	
 	public void delete(Integer id) {
 		find(id);
 		try {
@@ -63,6 +66,10 @@ public class CategoriaService {
 	
 	public Categoria fromDto(CategoriaDTO objDto) {
 		return new Categoria(objDto.getId(), objDto.getNome()); 
+	}
+	private void updateData(Categoria categoriaNovo ,Categoria categoria) {
+		categoriaNovo.setNome(categoria.getNome());	 
+		
 	}
 	
 }
