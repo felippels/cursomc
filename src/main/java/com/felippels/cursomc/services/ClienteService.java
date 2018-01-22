@@ -80,7 +80,7 @@ public class ClienteService {
 	}
 	public Cliente fromDto(ClienteNewDTO objDto) {
 		
-		 Cliente cliente  = new Cliente (objDto.getId(), objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(), TipoPessoa.toEnum(objDto.getTipoPessoa()));
+		 Cliente cliente  = new Cliente ( (objDto.getId()==null? null:objDto.getId()), objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(), TipoPessoa.toEnum(objDto.getTipoPessoa()));
 		 Cidade cidade = repositoryCidade.findOne(objDto.getIdCidade());
 		 Endereco endereco = new Endereco(null, objDto.getLogradouro(),objDto.getNumero(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep(), cliente, cidade);
 		 cliente.getEnderecoLista().add(endereco);

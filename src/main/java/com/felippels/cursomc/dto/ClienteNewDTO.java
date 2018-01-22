@@ -7,8 +7,9 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.felippels.cursomc.domain.Cliente;
+import com.felippels.cursomc.services.valiidations.ClienteInsert;
 
-
+@ClienteInsert
 public class ClienteNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
@@ -22,12 +23,15 @@ public class ClienteNewDTO implements Serializable {
 	private String cpfOuCnpj;
 	private Integer tipoPessoa;
 	
+	@NotEmpty(message="Preenchimento Obrigatório")
 	private String logradouro;
+	@NotEmpty(message="Preenchimento Obrigatório")
 	private String numero;
 	private String complemento;
 	private String bairro;
+	@NotEmpty(message="Preenchimento Obrigatório")
 	private String cep;
-	
+	@NotEmpty(message="Preenchimento Obrigatório")
 	private String telefone1;
 	private String telefone2;
 	private String telefone3;
