@@ -10,7 +10,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.felippels.cursomc.domain.Categoria;
-import com.felippels.cursomc.domain.Cliente;
 import com.felippels.cursomc.dto.CategoriaDTO;
 import com.felippels.cursomc.repositories.CategoriaRepository;
 import com.felippels.cursomc.services.exceptions.ObjectNotFoundException;

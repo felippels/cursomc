@@ -78,10 +78,22 @@ public class CursomcApplication implements CommandLineRunner {
 		Produto prod4 = new Produto(null, "Café", 4.50);
 		Produto prod5 = new Produto(null, "livro", 45.50);
 		
+		Produto prod6 = new Produto(null, "Computado2r", 800.00);
+		Produto prod7 = new Produto(null, "Mouse2", 20.00);
+		Produto prod8 = new Produto(null, "Canetar2", 1.20);
+		Produto prod9 = new Produto(null, "Café2", 4.50);
+		Produto prod10 = new Produto(null, "livro2", 45.50);
+		
 		cat1.getProdutosLista().addAll(Arrays.asList(prod1,prod2));
 		cat2.getProdutosLista().addAll(Arrays.asList(prod3));
 		cat3.getProdutosLista().addAll(Arrays.asList(prod4));
 		cat4.getProdutosLista().addAll(Arrays.asList(prod5));
+		
+		cat5.getProdutosLista().addAll(Arrays.asList(prod6,prod7));
+		cat6.getProdutosLista().addAll(Arrays.asList(prod8));
+		cat7.getProdutosLista().addAll(Arrays.asList(prod9));
+		cat8.getProdutosLista().addAll(Arrays.asList(prod10));
+		
 		
 		prod1.getCategoriasLista().addAll(Arrays.asList(cat1));
 		prod2.getCategoriasLista().addAll(Arrays.asList(cat1));
@@ -89,8 +101,14 @@ public class CursomcApplication implements CommandLineRunner {
 		prod4.getCategoriasLista().addAll(Arrays.asList(cat3));
 		prod5.getCategoriasLista().addAll(Arrays.asList(cat4));
 		
+		prod6.getCategoriasLista().addAll(Arrays.asList(cat5));
+		prod7.getCategoriasLista().addAll(Arrays.asList(cat5));
+		prod8.getCategoriasLista().addAll(Arrays.asList(cat6));
+		prod9.getCategoriasLista().addAll(Arrays.asList(cat7));
+		prod10.getCategoriasLista().addAll(Arrays.asList(cat8));
+		
 		categoriaRepositorio.save(Arrays.asList(cat1,cat2,cat3,cat4, cat5,cat6,cat7,cat8));
-		produtoRepositorio.save(Arrays.asList(prod1,prod2,prod3,prod4));
+		produtoRepositorio.save(Arrays.asList(prod1,prod2,prod3,prod4,prod5,prod6,prod7,prod8,prod9,prod10));
 
 		
 		Estado estado1 = new Estado(null, "Ceará");
