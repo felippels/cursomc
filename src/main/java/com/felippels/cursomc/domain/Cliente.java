@@ -112,12 +112,6 @@ public class Cliente implements Serializable {
 		this.telefones = telefones;
 	}
 
-	public void setTipoPessoa(Integer tipoPessoa) {
-		this.tipoPessoa = tipoPessoa;
-	}
-	
-	
-
 	public List<Pedido> getPedidoLista() {
 		return pedidoLista;
 	}
